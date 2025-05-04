@@ -1,8 +1,9 @@
 defaults:
   - _self_
-  - vlm: gemini #pg_blip # gemini #gpt4v #prismatic
+  - vlm: prismatic #pg_blip # gemini #gpt4v #prismatic
   - dataset:
-      - video_dataset
+      # - video_dataset
+      - lerobot_dataset
   - detector: grounding_dino #grounding_dino #owlv2
   - segmentation_model: sam2 #sam #efficient_sam #sam2
   - ov_segmentation_model: clipseg
@@ -22,7 +23,7 @@ keystate_predictors_for_voting:
   - gripper_position_predictor
   - scene_graph_predictor
   - object_state_predictor
-
+  
 
 GPU_IDS: [0]
 PROC_PER_GPU: 1
@@ -144,8 +145,8 @@ prompt:
 user: ${oc.env:USER}
 
 
-vocab_file: /home/${user}/code/NILS/data/lvis_classes.txt
-precomputed_embedding_file: /home/${user}/code/NILS/data/${state_detector.model_name}_lvis_embeddings.pth
+vocab_file: /home/${user}/projects/NILS/data/lvis_classes.txt
+precomputed_embedding_file: /home/${user}/projects/NILS/data/${state_detector.model_name}_lvis_embeddings.pth
 
 
 

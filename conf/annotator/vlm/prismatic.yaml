@@ -1,1 +1,1 @@
-_target_: nils.vlm.prismatic.PrismaticVLM
+_target_: nils.specialist_models.vlm.prismatic.PrismaticVLM

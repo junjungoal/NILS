@@ -1,0 +1,4 @@
+_target_: nils.my_datasets.lerobot_dataset.LeRobotNILSDataset
+data_id: "lerobot/ucsd_kitchen_dataset"
+sampling_rate: 4
+name: TEST

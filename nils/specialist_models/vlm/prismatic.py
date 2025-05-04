@@ -1,3 +1,4 @@
+import os, sys
 import io
 import json
 import logging
@@ -10,7 +11,7 @@ from prismatic import load
 
 from nils.utils.plot import crop_images_with_boxes
 
-device = torch.device("cuda:1") if torch.cuda.is_available() else torch.device("cpu")
+device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
 
 class PrismaticVLM:
     def __init__(self,model_path = "prism-dinosiglip+13b"):
@@ -19,7 +20,7 @@ class PrismaticVLM:
         
         
         #self.model = GenerativeModel("gemini-1.5-pro-preview-0409")
-        self.model = load(model_id,hf_token = "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")
+        self.model = load(model_id,hf_token = os.environ["HF_TOKEN"])
         self.model = self.model.to(device,dtype = torch.bfloat16)
         
 

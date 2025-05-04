@@ -129,9 +129,10 @@ class KeyStateAnnotator:
         self.last_scene_graphs = []
         self.depth_predictions = None
 
-        self.llm = hydra.utils.instantiate(cfg.llm)
-        self.google_llm = VertexAIAPI()
-        self.openai_api = OpenAIAPI()
+        self.llm = None
+        # self.llm = hydra.utils.instantiate(cfg.llm)
+        # self.google_llm = VertexAIAPI()
+        # self.openai_api = OpenAIAPI()
         self.vlm = hydra.utils.instantiate(cfg.vlm)
 
         self.flow_mask_fwd = None

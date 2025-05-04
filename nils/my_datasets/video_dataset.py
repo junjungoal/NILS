@@ -1,6 +1,7 @@
 import logging
 import os
 import pickle
+import av
 
 import cv2
 import numpy as np
@@ -31,25 +32,37 @@ class VideoDataset(Dataset):
         
         self.frame_names = []
         
-        
         for f in self.paths:
             print(f"Found video file: {f}")
+            container = av.open(os.path.join(self.path, f))
 
-            cap = cv2.VideoCapture(os.path.join(path, f))
             frames = []
             frame_names = []
-            frame_idx = 0
-            while True:
-                ret, frame = cap.read()
-                if not ret:
-                    break
-                frame = cv2.resize(frame, (frame.shape[1] //2, frame.shape[0] //2))
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            for idx, frame in enumerate(container.decode(video=0)):
+                img = frame.to_image()
+                # Resize to half
+                img = img.resize((img.width // 2, img.height // 2))
+                frames.append(np.array(img))
+                frame_names.append(f"{idx}.jpg")
+
+        # for f in self.paths:
+        #     print(f"Found video file: {f}")
+        #     cap = cv2.VideoCapture(os.path.join(path, f))
+        #     frames = []
+        #     frame_names = []
+        #     frame_idx = 0
+        #     while True:
+        #         ret, frame = cap.read()
+        #         if not ret:
+        #             break
+        #         frame = cv2.resize(frame, (frame.shape[1] //2, frame.shape[0] //2))
+        #         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
 
-                frames.append(frame)
-                frame_names.append(f"{frame_idx}.jpg")
-                frame_idx += 1
+        #         frames.append(frame)
+        #         frame_names.append(f"{frame_idx}.jpg")
+        #         frame_idx += 1
 
 
             frames = np.array(frames)
