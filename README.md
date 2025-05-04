@@ -23,7 +23,7 @@ We present NILS: Natural language Instruction Labeling for Scalability, a framew
 To label your own demonstration videos, use the following command:
 ```
 python annotate.py \
-    dataset.path=<path to folder containing videos> \
+    dataset.data_id=<data id for huggingface> \
     dataset.name=<name of the dataset> \
     GPU_IDS=[0]<List of gpu_ids to use> \
     PROC_PER_GPU=<Number of processes per GPU> \
